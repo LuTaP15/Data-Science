@@ -5,11 +5,11 @@ Repository with different algorithms from data science and machine learning
 
 1.	Daten
 2.	Unsupervised Learning
-2.1.	Clustering
-2.1.1.	K-means
-2.2.	Dimensionsreduktion
-2.2.1.	PCA
-2.2.2.	PLS
+ 2.1.	Clustering
+  2.1.1.	K-means
+ 2.2.	Dimensionsreduktion
+  2.2.1.	PCA
+  2.2.2.	PLS
 3.	Supervised Learning
 3.1.	Regression
 3.1.1.	Lineare Regression

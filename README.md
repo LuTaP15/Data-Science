@@ -12,12 +12,12 @@ Repository with different algorithms from data science and machine learning
     *	PLS
 * Supervised Learning
    *	Regression
-       *	Lineare Regression
+        *    Lineare Regression
    * Klassifizierung
-       *	Logistic Regression
-       *	Naive Bayes
-       *	K-nearest-Neighbors
-       *	Support-Vector-Machine
+        *	Logistic Regression
+        *	Naive Bayes
+        *	K-nearest-Neighbors
+        *	Support-Vector-Machine
              +	Linear Kernel
              +	Polynomialer Kernel
              +	Radial Basis Function Kernel

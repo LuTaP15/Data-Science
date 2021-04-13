@@ -3,7 +3,8 @@ Repository with different algorithms from data science and machine learning
 
 ### Gliederung
 
-*	Daten
+*	Data
+*	Explore Data		
 * Unsupervised Learning
   *	Clustering
     * K-means

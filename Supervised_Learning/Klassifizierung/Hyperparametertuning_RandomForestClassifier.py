@@ -31,8 +31,8 @@ print(f"Accuracy: {ac} \n"
 
 
 # Hyperparametertuning
-max_features_range = np.arange(1,6,1)
-n_estimators_range = np.arange(10,210,10)
+max_features_range = np.arange(1, 6, 1)
+n_estimators_range = np.arange(10, 210, 10)
 param_grid = dict(max_features=max_features_range, n_estimators=n_estimators_range)
 
 rf = RandomForestClassifier()
@@ -74,7 +74,7 @@ layout = go.Layout(
               text='max_features')
             ) )
 
-fig = go.Figure(data = [go.Contour(z=z, x=x, y=y)], layout=layout )
+fig = go.Figure(data=[go.Contour(z=z, x=x, y=y)], layout=layout )
 
 fig.update_layout(title='Hyperparameter tuning', autosize=False,
                   width=500, height=500,
@@ -83,7 +83,7 @@ fig.update_layout(title='Hyperparameter tuning', autosize=False,
 fig.show()
 
 # 3D-Plot
-fig = go.Figure(data= [go.Surface(z=z, y=y, x=x)], layout=layout )
+fig = go.Figure(data=[go.Surface(z=z, y=y, x=x)], layout=layout )
 
 fig.update_layout(title='Hyperparameter tuning',
                   scene = dict(

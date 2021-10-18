@@ -39,5 +39,5 @@ print(f"Vorhersage: {prediction}, {iris_dataset['target_names'][prediction]}")
 # Evaluieren 2
 y_pred = knn.predict(X_test)
 print(f"Vorhersagen für den Testdatensatz: \n {y_pred}")
-print(f"Genauigkeit aud den Testdaten:", np.mean(y_pred == y_test))
-print(f"Genauigkeit aud den Testdaten:", knn.score(X_test, y_test))
+print(f"Genauigkeit auf den Testdaten:", np.mean(y_pred == y_test))
+print(f"Genauigkeit auf den Testdaten:", knn.score(X_test, y_test))

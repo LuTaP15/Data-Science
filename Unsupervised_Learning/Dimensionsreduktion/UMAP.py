@@ -1,6 +1,8 @@
 """
 Uniform Manifold Approximation and Projection (UMAP)
 
+Package umap-learn
+
 Projection:
 the process or technique of reproducing a spatial object upon a plane, a curved surface, or a line by projecting its
 points. You can also think of it as a mapping of an object from high-dimensional to low-dimensional space.
@@ -123,7 +125,7 @@ print('Shape of X_trans: ', X_trans.shape)
 
 
 ##############################################################################################
-
+# Plot transformed data
 chart(X_trans, y)
 
 ##############################################################################################
@@ -147,7 +149,7 @@ print('Shape of X_train_res: ', X_train_res.shape)
 print('Shape of X_test_res: ', X_test_res.shape)
 
 ##############################################################################################
-
+# Plot train set
 chart(X_train_res, y_train)
-
+# Plot test set
 chart(X_test_res, y_test)

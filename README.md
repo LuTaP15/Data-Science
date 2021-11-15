@@ -4,20 +4,23 @@ Repository with different algorithms from data science and machine learning
 ### Gliederung
 
 *	Data
-*	Explore Data		
+*	Explore Data				
 * Unsupervised Learning
   *	Clustering
     * K-means
   * Dimensionsreduktion
     *	PCA
     *	PLS
+    *	UMAP
 * Supervised Learning
    *	Regression
         *    Lineare Regression
    * Klassifizierung
         *	Logistic Regression
+        *	Multi-label-classification
         *	Naive Bayes
         *	K-nearest-Neighbors
+        *	Random-Forest
         *	Support-Vector-Machine
              +	Linear Kernel
              +	Polynomialer Kernel
@@ -31,6 +34,7 @@ Repository with different algorithms from data science and machine learning
           +	Deep Learning
    *	Sonstige
          +	Bayes‘sche Netze
+   *	Forecast LSTM
 *	Feature Engineering
 	 *	Fisher Discriminate Analysis
 

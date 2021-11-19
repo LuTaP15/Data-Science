@@ -27,12 +27,12 @@ X_scaled = scaler.fit_transform(X)
 cov_matrix = np.cov(X_scaled.T)
 
 # Eigendecomposition
-values, vectors = np.linalg.eig(cov_matrix)
+eigen_values, eigen_vectors = np.linalg.eig(cov_matrix)
 
 # Calculate the explained variance by the principal components
 explained_variance = []
-for i in range(len(values)):
-    explained_variance.append(values[i]/np.sum(values))
+for i in range(len(eigen_values)):
+    explained_variance.append(eigen_values[i]/np.sum(eigen_values))
 
 sum_ev = np.sum(explained_variance)
 print(f"Sum of explained variance by all principal components:\n {sum_ev}")
@@ -40,8 +40,8 @@ print(f"List of the explained variance by principal component:\n {explained_vari
 
 # Visualization
 # Create the two principal components
-pc_1 = X_scaled.dot(vectors.T[0])
-pc_2 = X_scaled.dot(vectors.T[1])
+pc_1 = X_scaled.dot(eigen_vectors.T[0])
+pc_2 = X_scaled.dot(eigen_vectors.T[1])
 
 # Create a new dataframe with two principal components
 res = pd.DataFrame(zip(pc_1, pc_2, Y), columns=["PC1", "PC2", "Label"])
@@ -57,7 +57,7 @@ sns.scatterplot(x=res["PC1"], y=res["PC2"], hue=res["Label"], s=100)
 plt.show()
 
 # 3D Plot
-pc_3 = X_scaled.dot(vectors.T[2])
+pc_3 = X_scaled.dot(eigen_vectors.T[2])
 res["PC3"] = pc_3
 
 fig = px.scatter_3d(df, x=res["PC1"], y=res["PC2"], z=res["PC3"],

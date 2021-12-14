@@ -28,4 +28,6 @@ _ = plot_tree(
 )
 plt.show()
 ##########################################################################################
+# Needs pygraphviz
+
 #ax = pbb.drawTree(clf, size=10, dpi=300, features=features, ratio=0.8, colormap='Viridis')

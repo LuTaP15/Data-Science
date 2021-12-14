@@ -1,6 +1,7 @@
 import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
-import pybaobabdt as pbb
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+#import pybaobabdt as pbb
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("./../../data/iris_data.csv")
 
@@ -14,4 +15,17 @@ X = df.loc[:, features]
 
 clf = DecisionTreeClassifier().fit(X, y)
 
-ax = pbb.drawTree(clf, size=10, dpi=300, features=features, ratio=0.8, colormap='Viridis')
+##########################################################################################
+fig = plt.figure(figsize=(20, 8))
+_ = plot_tree(
+    clf,
+    feature_names=features,
+    class_names=list(set(target)),
+    filled=True,
+    fontsize=11,
+    label='all',
+    rounded=True
+)
+plt.show()
+##########################################################################################
+#ax = pbb.drawTree(clf, size=10, dpi=300, features=features, ratio=0.8, colormap='Viridis')

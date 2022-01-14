@@ -10,7 +10,7 @@ from sklearn.cluster import KMeans
 
 ######################################################################################################################
 # Einlesen der Daten
-df = pd.read_csv("./../data/autos_prepared.csv")
+df = pd.read_csv("../../data/autos_prepared.csv")
 
 X = df[["yearOfRegistration", "price"]]
 

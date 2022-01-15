@@ -1,0 +1,28 @@
+ids,labels,parents
+Supervised,Supervised,
+Classification,Classification,Supervised
+Naive Bayes,Naive Bayes,Classification
+Logistic Regression,Logistic Regression,Classification
+K-Nearest-Neighbors,K-Nearest-Neighbors,Classification
+Decisicon Tree,Decision Tree,Classification
+Random Forest,Random Forest,Classification
+Support Vector Machine,Support Vector Machine,Classification
+Regression,Regression,Supervised
+Neural Networks,Neural Networks,Supervised
+Dimensionality Reduction,Dimensionality Reduction,Supervised
+Unsupervised,Unsupervised,
+Clustering,Clustering,Unsupervised
+K-Means,K-Means,Clustering
+Affinity Propagation,Affinity Propagation,Clustering
+Mean Shift,Mean Shift,Clustering
+Spectral clustering,Spectral clustering,Clustering
+Hierarchical clustering,Hierarchical clustering,Clustering
+DBSCAN,DBSCAN,Clustering
+OPTICS,OPTICS,Clustering
+BIRCH,BIRCH,Clustering
+Dimensionality Reduction,Dimensionality Reduction,Unsupervised
+Semi-Supervised,Semi-Supervised,
+Reinforcement,Reinforcement,
+Others,Others,
+Probabilistic Graphical Models,Probabilistic Graphical Models,Others
+Bayesian Network,Bayesian Network,Probabilistic Graphical Models

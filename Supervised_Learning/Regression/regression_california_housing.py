@@ -20,6 +20,7 @@ from sklearn.datasets import fetch_california_housing
 # Constants
 VIEW_ALL_DATA = True
 DISPLAY_PRECISION_2 = False
+PLOTTING_ON = False
 
 ##########################################################################################
 # Functions
@@ -37,6 +38,11 @@ def plot_data_on_map(df):
     plt.figure(figsize=(10, 8))
     plt.scatter(df['Latitude'], df['Longitude'], c=df['AveHouseVal'], s=df['Population']/100)
     plt.colorbar()
+    plt.show()
+    
+def plot_histograms(df):
+    # Function to plot the data as histograms
+    df.hist(bins=50, figsize=(20, 15))
     plt.show()
 
 
@@ -65,8 +71,13 @@ def explore_data(df):
     print(df.describe())
 
     # Check for NANs
+    check_nan = df.isnull().values.any()
+    print(check_nan)
 
-    # Print Correlationmatrix
+
+def correlation_to_house_value(df):
+    corr_matrix = df.corr()
+    return corr_matrix["AveHouseVal"].sort_values(ascending=False)
 
 
 def evaluation():
@@ -85,6 +96,13 @@ if __name__ == "__main__":
     df = load_data(fetch_california_housing)
     # Explore data
     explore_data(df)
+    if PLOTTING_ON:
+        # Plot Histograms
+        plot_histograms(df)
+        # Plot data Population and housing price
+        plot_data_on_map(df)
+    # Correlation of housing price with other features
+    print(correlation_to_house_value(df))
     # Data preprocessing
     # Imputing missing values
     # Random forest model

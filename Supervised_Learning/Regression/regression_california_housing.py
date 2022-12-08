@@ -44,6 +44,8 @@ def explore_data(df):
     # Function to explore the data
     # Check features and measurements
     print(f"Amount of features: {df.shape[0]}, Amount of measurements: {df.shape[1]}")
+    # Print feature names
+    print(list(df.columns))
     if VIEW_ALL_DATA:
         pd.set_option("display.max.columns", None)
     if DISPLAY_PRECISION_2:
@@ -83,6 +85,8 @@ if __name__ == "__main__":
     df = load_data(fetch_california_housing)
     # Explore data
     explore_data(df)
+    # Data preprocessing
+    # Imputing missing values
     # Random forest model
     # XGBoost model
     # Evaluation

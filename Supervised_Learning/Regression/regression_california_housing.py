@@ -8,17 +8,25 @@ Pipeline and Gridsearch for RandomForestRegression, XGBoost
 2. Random Forest Model
 3. XGBoost Model
 4. Evaluation
-
+#######################
+Settings:
+MODEL_SELECT = "XGBOOST" # Options "RFR" or "XGBOOST"
+VIEW_ALL_DATA = True
+DISPLAY_PRECISION_2 = False
+PLOTTING_ON = False
+EXPLORE_DATA_ON = False
+EVALUATION_ON = False
 """
 
 # Libraries
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score, mean_absolute_percentage_error
 
 ##########################################################################################
 # Constants
@@ -26,7 +34,8 @@ MODEL_SELECT = "XGBOOST"                # Options "RFR" or "XGBOOST"
 VIEW_ALL_DATA = True
 DISPLAY_PRECISION_2 = False
 PLOTTING_ON = False
-EXLORE_DATA_ON = False
+EXPLORE_DATA_ON = False
+EVALUATION_ON = False
 
 ##########################################################################################
 # Functions
@@ -89,6 +98,28 @@ def correlation_to_house_value(df):
     return corr_matrix["AveHouseVal"].sort_values(ascending=False)
 
 
+def cal_smape(y_true, y_pred):
+    return 100/len(y_true) * np.sum(2 * np.abs(y_pred - y_true) / (np.abs(y_true) + np.abs(y_pred)))
+
+
+def random_forest_regression(X_train, y_train, X_test):
+    # Random forest model
+    rfr = RandomForestRegressor(n_estimators=100, max_depth=10)
+    # Train model
+    rfr.fit(X_train, y_train)
+    # Predict
+    return rfr.predict(X_test)
+
+
+def xgboost_regression(X_train, y_train, X_test):
+    # XGBoost model
+    xgbr = XGBRegressor(n_estimators=1000, max_depth=7, eta=0.1, subsample=0.7, colsample_bytree=0.8)
+    # Train model
+    xgbr.fit(X_train, y_train)
+    # Predict
+    return xgbr.predict(X_test)
+
+
 def evaluation(y_test, y_pred):
     # Function to calculate metrics
     # R^2
@@ -98,8 +129,10 @@ def evaluation(y_test, y_pred):
     # MAE
     mae = mean_absolute_error(y_test, y_pred)
     # MAPE
+    mape = mean_absolute_percentage_error(y_test, y_pred)
     # SMAPE
-    return r2, rmse, mae
+    smape = cal_smape(y_test, y_pred)
+    return r2, rmse, mae, mape, smape
 
 
 if __name__ == "__main__":
@@ -107,42 +140,41 @@ if __name__ == "__main__":
     fetch_california_housing = fetch_california_housing()
     df = load_data(fetch_california_housing)
     # Explore data
-    if EXLORE_DATA_ON:
+    if EXPLORE_DATA_ON:
         explore_data(df)
     if PLOTTING_ON:
         # Plot Histograms
         plot_histograms(df)
         # Plot data Population and housing price
         plot_data_on_map(df)
+
     # Data Preprocessing
     # Selecting Features and Label
     y = df.pop("AveHouseVal")
     X = df
-
     # Split data in train and test
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=2)
 
     if MODEL_SELECT == "RFR":
-        # Random forest model
-        rfr = RandomForestRegressor(n_estimators=100, max_depth=10)
-        # Train model
-        rfr.fit(X_train, y_train)
-        # Predict
-        y_pred = rfr.predict(X_test)
+        # Random Forest Regression
+        print("Selected model: Random Forest Regression")
+        y_pred = random_forest_regression(X_train, y_train, X_test)
+        EVALUATION_ON = True
 
     elif MODEL_SELECT == "XGBOOST":
-        # XGBoost model
-        xgbr = XGBRegressor(n_estimators=1000, max_depth=7, eta=0.1, subsample=0.7, colsample_bytree=0.8)
-        # Train model
-        xgbr.fit(X_train, y_train)
-        # Predict
-        y_pred = xgbr.predict(X_test)
+        # Xgboost Regression
+        print("Selected model: XGBOOST Regression")
+        y_pred = xgboost_regression(X_train, y_train, X_test)
+        EVALUATION_ON = True
 
     else:
         print("Select a model!")
 
     # Evaluation
-    r2, rmse, mae = evaluation(y_test, y_pred)
-    print(f"R2: {r2}")
-    print(f"RMSE: {rmse}")
-    print(f"MAE: {mae}")
+    if EVALUATION_ON:
+        r2, rmse, mae, mape, smape = evaluation(y_test, y_pred)
+        print(f"Root Squared: {r2}")
+        print(f"Root Mean Square Error: {rmse}")
+        print(f"Mean Absolut Error: {mae}")
+        print(f"Mean Absolute Percentage Error: {mape}")
+        print(f"Symmetric Mean Absolute Percentage Error: {smape}")

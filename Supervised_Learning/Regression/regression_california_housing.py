@@ -15,12 +15,18 @@ Pipeline and Gridsearch for RandomForestRegression, XGBoost
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from xgboost import XGBRegressor
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 ##########################################################################################
 # Constants
+MODEL_SELECT = "XGBOOST"                # Options "RFR" or "XGBOOST"
 VIEW_ALL_DATA = True
 DISPLAY_PRECISION_2 = False
 PLOTTING_ON = False
+EXLORE_DATA_ON = False
 
 ##########################################################################################
 # Functions
@@ -74,20 +80,26 @@ def explore_data(df):
     check_nan = df.isnull().values.any()
     print(check_nan)
 
+    # Correlation of housing price with other features
+    print(correlation_to_house_value(df))
+
 
 def correlation_to_house_value(df):
     corr_matrix = df.corr()
     return corr_matrix["AveHouseVal"].sort_values(ascending=False)
 
 
-def evaluation():
+def evaluation(y_test, y_pred):
     # Function to calculate metrics
-    print("eval")
     # R^2
+    r2 = r2_score(y_test, y_pred)
     # RMSE
+    rmse = mean_squared_error(y_test, y_pred)
     # MAE
+    mae = mean_absolute_error(y_test, y_pred)
     # MAPE
     # SMAPE
+    return r2, rmse, mae
 
 
 if __name__ == "__main__":
@@ -95,16 +107,42 @@ if __name__ == "__main__":
     fetch_california_housing = fetch_california_housing()
     df = load_data(fetch_california_housing)
     # Explore data
-    explore_data(df)
+    if EXLORE_DATA_ON:
+        explore_data(df)
     if PLOTTING_ON:
         # Plot Histograms
         plot_histograms(df)
         # Plot data Population and housing price
         plot_data_on_map(df)
-    # Correlation of housing price with other features
-    print(correlation_to_house_value(df))
-    # Data preprocessing
-    # Imputing missing values
-    # Random forest model
-    # XGBoost model
+    # Data Preprocessing
+    # Selecting Features and Label
+    y = df.pop("AveHouseVal")
+    X = df
+
+    # Split data in train and test
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=2)
+
+    if MODEL_SELECT == "RFR":
+        # Random forest model
+        rfr = RandomForestRegressor(n_estimators=100, max_depth=10)
+        # Train model
+        rfr.fit(X_train, y_train)
+        # Predict
+        y_pred = rfr.predict(X_test)
+
+    elif MODEL_SELECT == "XGBOOST":
+        # XGBoost model
+        xgbr = XGBRegressor(n_estimators=1000, max_depth=7, eta=0.1, subsample=0.7, colsample_bytree=0.8)
+        # Train model
+        xgbr.fit(X_train, y_train)
+        # Predict
+        y_pred = xgbr.predict(X_test)
+
+    else:
+        print("Select a model!")
+
     # Evaluation
+    r2, rmse, mae = evaluation(y_test, y_pred)
+    print(f"R2: {r2}")
+    print(f"RMSE: {rmse}")
+    print(f"MAE: {mae}")

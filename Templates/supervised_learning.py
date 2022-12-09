@@ -44,7 +44,7 @@ grid_search = GridSearchCV(estimator=rfc, param_grid=param_grid, cv=5, verbose=2
 grid_search.fit(X, y)
 
 # display best parameters and best score
-print("Best parameters: {}".format(grid_search.best_params_))
+print(f"Best parameters: {grid_search.best_params_}")
 print("Best cross-validation score: {:.2f}".format(grid_search.best_score_))
 
 # build model with best paremeters
@@ -85,7 +85,7 @@ plot_roc_curve(model, X_test, y_test)
 import pandas as pd
 import statsmodels.api as sm
 
-X = add_constant(X)                        # add intercept
+X = sm.add_constant(X)                        # add intercept
 model = sm.OLS(y_train, X_train).fit()     # linear regression
 model = sm.Logit(y_train, X_train).fit()   # logistic regression
 model.predict(X_test)

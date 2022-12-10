@@ -23,14 +23,15 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_california_housing
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score, mean_absolute_percentage_error
+from sklearn.preprocessing import StandardScaler
 
 ##########################################################################################
 # Constants
-MODEL_SELECT = "XGBOOST"                # Options "RFR" or "XGBOOST"
+MODEL_SELECT = "RFR"                # Options "RFR" or "XGBOOST"
 VIEW_ALL_DATA = True
 DISPLAY_PRECISION_2 = False
 PLOTTING_ON = False
@@ -102,6 +103,14 @@ def cal_smape(y_true, y_pred):
     return 100/len(y_true) * np.sum(2 * np.abs(y_pred - y_true) / (np.abs(y_true) + np.abs(y_pred)))
 
 
+def scale_data(X_train, X_test):
+    scaler = StandardScaler()
+    scaler.fit(X_train)
+    X_train = scaler.transform(X_train)
+    X_test = scaler.transform(X_test)
+    return X_train, X_test
+
+
 def random_forest_regression(X_train, y_train, X_test):
     # Random forest model
     rfr = RandomForestRegressor(n_estimators=100, max_depth=10)
@@ -154,6 +163,9 @@ if __name__ == "__main__":
     X = df
     # Split data in train and test
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=2)
+
+    # Skalieren der Daten
+    X_train, X_test = scale_data(X_train, X_test)
 
     if MODEL_SELECT == "RFR":
         # Random Forest Regression

@@ -13,7 +13,7 @@ from sklearn.svm import SVC
 data = pd.read_csv("./../../data/iris_data.csv")
 X = data.iloc[:, :-1]
 y = data.iloc[:, -1]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 
 # Define the pipeline
 pipeline = Pipeline([

@@ -44,6 +44,7 @@ In this repository, you will find the following categories of algorithms:
 - Fisher Discriminant Analysis (FDA)
 
 Check out the included figure for a visual overview of these algorithms. 📊
+
 ![newplot](https://user-images.githubusercontent.com/56802577/142003740-1526c65a-ccbf-47c8-a90f-4d1deb3235f6.png)
 
 Thanks for stopping by! I hope you find this repository helpful in your data science journey. 🚀

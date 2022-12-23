@@ -10,6 +10,7 @@ In this repository, you will find the following categories of algorithms:
 
 - Clustering
   * K-means
+  * DBSCAN
 - Dimensionality Reduction
   * Principal Component Analysis (PCA)
   * Partial Least Squares (PLS)
@@ -19,13 +20,15 @@ In this repository, you will find the following categories of algorithms:
 
 - Regression
   * Linear Regression
+  * Random Forest Regression
+  * Xgboost Regression
 - Classification
   * Logistic Regression
-  * Multi-label Classification
   * Naive Bayes
   * K-nearest Neighbors (KNN)
-  * Random Forest
+  * Random Forest Classification
   * Support Vector Machine (SVM)
+  * Multi-label Classification
 - Neural Networks
   * Neuronal Networks
   * Convolutional Neural Network (CNN)

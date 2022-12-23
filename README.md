@@ -21,7 +21,7 @@ In this repository, you will find the following categories of algorithms:
 - Regression
   * Linear Regression
   * Random Forest Regression
-  * Xgboost Regression
+  * XGBoost Regression
 - Classification
   * Logistic Regression
   * Naive Bayes

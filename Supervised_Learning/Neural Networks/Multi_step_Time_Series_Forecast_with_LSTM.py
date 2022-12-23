@@ -1,4 +1,4 @@
-# ~ Libraries ~
+# Libraries
 
 from pandas import DataFrame, Series, concat, read_csv, datetime
 from sklearn.metrics import mean_squared_error
@@ -168,7 +168,7 @@ def plot_forecasts(series, forecasts, n_test):
 #######################################################################################################
 
 # load dataset
-series = read_csv('shampoo.csv', header=0, parse_dates=[0], index_col=0, squeeze=True, date_parser=parser)
+series = read_csv('./../../data/shampoo.csv', header=0, parse_dates=[0], index_col=0, squeeze=True, date_parser=parser)
 # configure
 n_lag = 1
 n_seq = 3

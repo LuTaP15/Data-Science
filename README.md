@@ -42,9 +42,9 @@ In this repository, you will find the following categories of algorithms:
 
 - Bayesian Networks
 
-## 🧑‍🔬 Feature Engineering
+## 📊 Exploratory Data Analysis Tools and Visualization Scripts
 
-- Fisher Discriminant Analysis (FDA)
+- Collection of scripts for performing Exploratory Data Analysis and generating various types of plots and visualizations
 
 
 ## 📄 Templates

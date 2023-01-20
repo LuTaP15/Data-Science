@@ -42,7 +42,7 @@ In this repository, you will find the following categories of algorithms:
 
 - Bayesian Networks
 
-## 📊 Exploratory Data Analysis Tools and Visualization Scripts
+## 📊 Explore Data
 
 - Collection of scripts for performing Exploratory Data Analysis and generating various types of plots and visualizations
 
